@@ -9,20 +9,54 @@
     <title>Quiz App</title>
   </head>
   <body>
-    <div class="container">
-      <div id="question-container" class="hide">
-        <div id="question">Question</div>
-        <div id="answer-buttons" class="btn-grid">
-          <button class="btn">Answer 1</button>
-          <button class="btn">Answer 2</button>
-          <button class="btn">Answer 3</button>
-          <button class="btn">Answer 4</button>
-        </div>
-      </div>
-      <div class="controls">
-        <button id="start-btn" class="start-btn btn">Start</button>
-        <button id="next-btn" class="next-btn btn hide">Next</button>
-      </div>
+    <div class="home-box custom-box hide">
+      <h3>Instruction:</h3>
+      <p>
+        Total Number of Questions:
+        <span class="total-question">11</span>
+      </p>
+      <button type="button" class="btn">Start Quiz</button>
     </div>
+    <div class="quiz-box custom-box">
+      <div class="question-number"></div>
+      <div class="question-text"></div>
+      <div class="option-container"></div>
+      <button type="button" class="btn" onclick="next()">Next</button>
+      <div class="answers-indicator"></div>
+    </div>
+    <div class="result-box custom-box hide">
+      <h1>Quiz Result</h1>
+      <table>
+        <tr>
+          <td>Total Question</td>
+          <td><span class="total-question"></span></td>
+        </tr>
+        <tr>
+          <td>Attempt</td>
+          <td><span class="total-attempt"></span></td>
+        </tr>
+        <tr>
+          <td>Correct</td>
+          <td><span class="total-correct"></span></td>
+        </tr>
+        <tr>
+          <td>Wrong</td>
+          <td><span class="total-wrong"></span></td>
+        </tr>
+        <tr>
+          <td>Percentage</td>
+          <td><span class="percentage"></span></td>
+        </tr>
+        <tr>
+          <td>Your Total Score</td>
+          <td><span class="total-score"></span></td>
+        </tr>
+      </table>
+      <button type="button" class="btn">Try Again</button>
+      <button type="button" class="btn">Go To Home</button>
+    </div>
+
+    <script src="js/question.js"></script>
+    <script src="js/script.js"></script>
   </body>
 </html>
