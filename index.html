@@ -8,15 +8,17 @@
     <title>Quiz App</title>
   </head>
   <body>
-    <div class="home-box custom-box hide">
+    <div class="home-box custom-box">
       <h3>Instruction:</h3>
       <p>
         Total Number of Questions:
-        <span class="total-question">11</span>
+        <span class="total-question"></span>
       </p>
-      <button type="button" class="btn">Start Quiz</button>
+      <button type="button" class="btn" onclick="startQuiz()">
+        Start Quiz
+      </button>
     </div>
-    <div class="quiz-box custom-box">
+    <div class="quiz-box custom-box hide">
       <div class="question-number"></div>
       <div class="question-text"></div>
       <div class="option-container"></div>
