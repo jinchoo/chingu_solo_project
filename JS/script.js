@@ -165,13 +165,43 @@ function quizResult() {
     correctAnswers + " / " + quiz.length;
 }
 
-function tryAgainQuiz() {}
+function resetQuiz() {
+  questionCounter = 0;
+  correctAnswers = 0;
+  attempt = 0;
+}
 
-window.onload = function () {
+function tryAgainQuiz() {
+  // hide the resultBox
+  resultBox.classList.add("hide");
+  // show the quizBox
+  quizBox.classList.remove("hide");
+  resetQuiz();
+  startQuiz();
+}
+
+function goToHome() {
+  // hide resultBox
+  resultBox.classList.add("hide");
+  // show homeBox
+  homeBox.classList.remove("hide");
+  resetQuiz();
+}
+
+function startQuiz() {
+  // hide home box
+  homeBox.classList.add("hide");
+  // show quiz box
+  quizBox.classList.remove("hide");
   //first we will set all questions in availableQuestions Array
   setAvailableQuestions();
   //second we will call getNewQuestion(); function
   getNewQuestion();
   // to create indicator of answers
   answersIndicator();
+  nextBtn.disabled = true;
+}
+
+window.onload = function () {
+  homeBox.querySelector(".total-question").innerHTML = quiz.length;
 };
