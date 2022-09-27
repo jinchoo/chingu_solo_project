@@ -5,6 +5,7 @@ const answersIndicatorContainer = document.querySelector(".answers-indicator");
 const homeBox = document.querySelector(".home-box");
 const quizBox = document.querySelector(".quiz-box");
 const resultBox = document.querySelector(".result-box");
+const nextBtn = document.querySelector(".btn.next");
 
 let questionCounter = 0;
 let currentQuestion;
@@ -109,6 +110,8 @@ function getResult(element) {
   }
   attempt++;
   unclickableOptions();
+
+  nextBtn.disabled = false;
 }
 // make all the options unclickable once the user select a option (RESTRICT THE USER TO CHANGE THE OPTION AGAIN)
 function unclickableOptions() {
@@ -138,6 +141,7 @@ function next() {
     quizOver();
   } else {
     getNewQuestion();
+    nextBtn.disabled = true;
   }
 }
 
