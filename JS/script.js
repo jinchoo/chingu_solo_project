@@ -1,11 +1,17 @@
 const questionNumber = document.querySelector(".question-number");
 const questionText = document.querySelector(".question-text");
 const optionContainer = document.querySelector(".option-container");
+const answersIndicatorContainer = document.querySelector(".answers-indicator");
+const homeBox = document.querySelector(".home-box");
+const quizBox = document.querySelector(".quiz-box");
+const resultBox = document.querySelector(".result-box");
 
 let questionCounter = 0;
 let currentQuestion;
 let availableQuestions = [];
 let availableOptions = [];
+let correctAnswers = 0;
+let attempt = 0;
 
 //push the questions into availableQuestions Array
 function setAvailableQuestions() {
@@ -81,9 +87,16 @@ function getResult(element) {
     // set the green color to the correct option
     element.classList.add("correct");
     //console.log("answer is correct");
+    // add the indicator to correct mark
+    updateAnswerIndicator("correct");
+    correctAnswers++;
+    console.log("correct: " + correctAnswers);
   } else {
     // set the red color to the incorrect option
     element.classList.add("wrong");
+    //console.log("answer is wrong");
+    // add the indicator to wrong mark
+    updateAnswerIndicator("wrong");
 
     // if the answer is incorrect the show the correct option by adding green color the correct option
     const optionLen = optionContainer.children.length;
@@ -92,8 +105,9 @@ function getResult(element) {
         optionContainer.children[i].classList.add("correct");
       }
     }
-    console.log("answer is wrong");
+    //console.log("answer is wrong");
   }
+  attempt++;
   unclickableOptions();
 }
 // make all the options unclickable once the user select a option (RESTRICT THE USER TO CHANGE THE OPTION AGAIN)
@@ -103,16 +117,57 @@ function unclickableOptions() {
     optionContainer.children[i].classList.add("already-answered");
   }
 }
+
+function answersIndicator() {
+  answersIndicatorContainer.innerHTML = "";
+  const totalQuestion = quiz.length;
+  for (let i = 0; i < totalQuestion; i++) {
+    const indicator = document.createElement("div");
+    answersIndicatorContainer.appendChild(indicator);
+  }
+}
+
+function updateAnswerIndicator(markType) {
+  answersIndicatorContainer.children[questionCounter - 1].classList.add(
+    markType
+  );
+}
 function next() {
   if (questionCounter === quiz.length) {
     console.log("quiz over");
+    quizOver();
   } else {
     getNewQuestion();
   }
 }
+
+function quizOver() {
+  //hide quiz box
+  quizBox.classList.add("hide");
+  //show result box
+  resultBox.classList.remove("hide");
+  quizResult();
+}
+
+// get the quiz result
+function quizResult() {
+  resultBox.querySelector(".total-question").innerHTML = quiz.length;
+  resultBox.querySelector(".total-attempt").innerHTML = attempt;
+  resultBox.querySelector(".total-correct").innerHTML = correctAnswers;
+  resultBox.querySelector(".total-wrong").innerHTML = attempt - correctAnswers;
+  resultBox.querySelector(".percentage").innerHTML =
+    ((correctAnswers / quiz.length) * 100).toFixed(2) + "%";
+  resultBox.querySelector(".total-score").innerHTML =
+    correctAnswers + " / " + quiz.length;
+}
+
+function tryAgainQuiz() {}
+
 window.onload = function () {
   //first we will set all questions in availableQuestions Array
   setAvailableQuestions();
   //second we will call getNewQuestion(); function
   getNewQuestion();
+  // to create indicator of answers
+  answersIndicator();
 };
