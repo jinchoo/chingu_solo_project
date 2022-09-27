@@ -103,7 +103,7 @@ body {
   margin-bottom: 10px;
   cursor: pointer;
   opacity: 0;
-  animation: fadeIn 0.3s ease forwards;
+  animation: fadeIn 0.2s ease forwards;
   position: relative;
   overflow: hidden;
 }
