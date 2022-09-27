@@ -65,6 +65,10 @@ body {
   cursor: pointer;
   display: inline-block;
 }
+.btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
 .quiz-box .question-number,
 .quiz-box .question-text,
